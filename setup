@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 echo
-echo "CREATING SSH KEY"
 echo "================"
+echo "CREATING SSH KEY"
 echo
 
 echo -n "Enter email for public/private key pair: "
@@ -10,8 +10,8 @@ read EMAIL
 ssh-keygen -t rsa -C "$EMAIL"
 
 echo
-echo "UPLOAD SSH KEY TO GITHUB"
 echo "========================"
+echo "UPLOAD SSH KEY TO GITHUB"
 echo
 
 echo -n "Github Login: "
@@ -21,8 +21,8 @@ BODY="{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa
 curl -u "$GITUSER" https://api.github.com/user/keys -d "$BODY"
 
 echo
-echo "CLONE AND INIT DOTFILES"
 echo "======================="
+echo "CLONE AND INIT DOTFILES"
 echo
 
 cd $HOME
