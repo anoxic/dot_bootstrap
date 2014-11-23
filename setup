@@ -5,7 +5,9 @@ echo "CREATING SSH KEY"
 echo "================"
 echo
 
-ssh-keygen -t rsa -C "brian@zick.io"
+echo -n "Enter email for public/private key pair: "
+read EMAIL
+ssh-keygen -t rsa -C "$EMAIL"
 
 echo
 echo "UPLOAD SSH KEY TO GITHUB"
