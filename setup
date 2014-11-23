@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-cd $HOME
-
 ssh-keygen -t rsa
 
 echo -n "Github Login: " && read GITUSER
@@ -9,9 +7,7 @@ echo -n "Github Login: " && read GITUSER
 curl -u "$GITUSER" https://api.github.com/user/keys\
      -d "{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa.pub`\"}"
 
-git clone "git@github.com:$GITUSER/dotfiles.git"
-cd dotfiles
-git submodule init
-git submodule update
-./make.sh
+git clone "git@github.com:$GITUSER/dotfiles.git" $HOME/dotfiles
+
+$HOME/dotfiles/make.sh
 
