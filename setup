@@ -9,5 +9,5 @@ curl -u "$GITUSER" https://api.github.com/user/keys\
 
 git clone "git@github.com:$GITUSER/dotfiles.git" $HOME/dotfiles
 
-$HOME/dotfiles/make.sh
+cd $HOME/dotfiles && make
 
