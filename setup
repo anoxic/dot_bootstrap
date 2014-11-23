@@ -2,14 +2,12 @@
 
 cd $HOME
 
-echo -n "Enter email for public/private key pair: "
-read EMAIL
-ssh-keygen -t rsa -C "$EMAIL"
+ssh-keygen -t rsa
 
-echo -n "Github Login: "
-read GITUSER
-BODY="{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa.pub`\"}"
-curl -u "$GITUSER" https://api.github.com/user/keys -d "$BODY"
+echo -n "Github Login: " && read GITUSER
+
+curl -u "$GITUSER" https://api.github.com/user/keys\
+     -d "{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa.pub`\"}"
 
 git clone "git@github.com:$GITUSER/dotfiles.git"
 cd dotfiles
