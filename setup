@@ -1,33 +1,18 @@
 #!/usr/bin/env bash
 
-echo
-echo "================"
-echo "CREATING SSH KEY"
-echo
+cd $HOME
 
 echo -n "Enter email for public/private key pair: "
 read EMAIL
 ssh-keygen -t rsa -C "$EMAIL"
 
-echo
-echo "========================"
-echo "UPLOAD SSH KEY TO GITHUB"
-echo
-
 echo -n "Github Login: "
 read GITUSER
-
 BODY="{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa.pub`\"}"
 curl -u "$GITUSER" https://api.github.com/user/keys -d "$BODY"
 
-echo
-echo "======================="
-echo "CLONE AND INIT DOTFILES"
-echo
-
-cd $HOME
 git clone git@github.com:anoxic/dotfiles.git
-cd $HOME/dotfiles
+cd dotfiles
 git submodule init
 git submodule update
 ./make.sh
