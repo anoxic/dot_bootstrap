@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+echo
+echo "CREATING SSH KEY"
+echo "================"
+echo
+
+ssh-keygen -t rsa -C "brian@zick.io"
+
+echo
+echo "UPLOAD SSH KEY TO GITHUB"
+echo "========================"
+echo
+
+echo -n "Github Login: "
+read GITUSER
+
+BODY="{\"title\":\"`whoami`@`hostname` `date`\",\"key\":\"`cat $HOME/.ssh/id_rsa.pub`\"}"
+curl -u "$GITUSER" https://api.github.com/user/keys -d "$BODY"
+
+echo
+echo "CLONE AND INIT DOTFILES"
+echo "======================="
+echo
+
+cd $HOME
+git clone git@github.com:anoxic/dotfiles.git
+cd $HOME/dotfiles
+git submodule init
+git submodule update
+./make.sh
+
