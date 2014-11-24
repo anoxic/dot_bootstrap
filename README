@@ -7,10 +7,10 @@ loathed tasks: configuring my account on a new machine.
 
 So I've whipped up something basic right now, which generates a
 new public/private key pair, uploads it to github, clones my dotfiles 
-repo and runs the makefile. The idea is the you will upload this
-somewhere easily accessible that you can run from anywhere, like:
+repo and runs the makefile. The idea is the you will upload this in
+an easy-to-access location so you can run it from anywhere:
 
-    $ curl https://zick.io/setup | bash
+    $ bash <(curl -s https://zick.io/setup)
 
 I plan to make this install my favorite utilities depending on the OS,
 and automatically change some other settings, like I have done for 
