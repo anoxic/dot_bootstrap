@@ -16,3 +16,5 @@ I plan to make this install my favorite utilities depending on the OS,
 and automatically change some other settings, like I have done for 
 my server setup cheatsheet (gist.github.com/anoxic/5522840), automated.
 
+
+(On Debian/Ubuntu you'll want to `apt-get install -y make git` first.)
